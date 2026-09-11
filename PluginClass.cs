@@ -17,7 +17,14 @@ namespace Plugin_ListenerCount
         private const string DefaultOutputPath = @"C:\RadioDJv3\listener.txt";
 
         private static readonly Regex NumberPattern = new Regex(@"^-?\d+$", RegexOptions.Compiled);
-        private static readonly HttpClient HttpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
+        private static readonly HttpClient HttpClient = CreateHttpClient();
+
+        private static HttpClient CreateHttpClient()
+        {
+            var client = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("RadioDJ Listener Count");
+            return client;
+        }
 
         private IHost host;
         private System.Timers.Timer pollTimer;
