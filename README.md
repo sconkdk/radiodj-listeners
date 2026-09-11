@@ -65,7 +65,7 @@ Open the plugin's config screen from RadioDJ's Plugins list (gear/config icon) t
 
 | Field                  | Default                                   |
 |-------------------------|--------------------------------------------|
-| URL                    | `https://localhost/listener.txt`    |
+| URL                    | `http://localhost/listener.txt`     |
 | Poll interval (minutes) | `5`                                        |
 | Output file             | `C:\RadioDJv3\listener.txt`               |
 
