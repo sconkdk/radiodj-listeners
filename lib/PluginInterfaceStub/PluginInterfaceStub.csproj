@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    RadioDJ's own PluginInterface.dll (C:\RadioDJv3\PluginInterface.dll) has a corrupted
+    strong-name blob left over from obfuscation, which makes csc/Roslyn refuse to load it
+    as a compile-time reference (CS0009 "Invalid public key"), even though the CLR loads it
+    fine at runtime. This project is a hand-written stand-in with the same assembly identity
+    (name + version, unsigned) and the subset of rdjInterface types/members the plugin
+    actually uses, so we can compile against it. It is NEVER deployed - RadioDJ always loads
+    its own real PluginInterface.dll at runtime, and type identity (assembly name + version,
+    no public key) matches so the real interface resolves correctly at load time.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>PluginInterface</AssemblyName>
+    <RootNamespace>rdjInterface</RootNamespace>
+    <Version>1.0.0.0</Version>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+</Project>

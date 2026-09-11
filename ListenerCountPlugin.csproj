@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>Plugin_ListenerCount</AssemblyName>
+    <RootNamespace>Plugin_ListenerCount</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Version>1.0.0.0</Version>
+    <Product>RadioDJ Listener Count Plugin</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="lib\**\*.cs" />
+    <None Remove="lib\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--
+      Compiled against a hand-written stub with the same assembly identity, because the
+      real PluginInterface.dll has a corrupted strong-name blob that csc rejects (CS0009).
+      See lib/PluginInterfaceStub/PluginInterfaceStub.csproj for details. Private=false so
+      it is never copied into our output - RadioDJ always loads its own real DLL at runtime.
+    -->
+    <Reference Include="PluginInterface">
+      <HintPath>lib\PluginInterfaceStub\bin\Release\net48\PluginInterface.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+
+</Project>
